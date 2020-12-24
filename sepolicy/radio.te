@@ -1,1 +1,2 @@
 allow system_server radio_prop:property_service set;
+allow radio { cameraserver_service mediaextractor_service mediaserver_service mediametrics_service drmserver_service audioserver_service }:service_manager find;
