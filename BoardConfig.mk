@@ -12,6 +12,9 @@ DEVICE_PATH := device/xiaomi/ulysse
 # Asserts
 TARGET_OTA_ASSERT_DEVICE := ulysse,ugg,ugglite
 
+# Camera
+MI8937_CAM_USE_RENAMED_BLOBS_U := true
+
 # Display
 TARGET_SCREEN_DENSITY := 267
 
