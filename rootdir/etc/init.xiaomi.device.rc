@@ -31,6 +31,10 @@ on property:ro.vendor.xiaomi.series=ulysse
     setprop ro.hardware.consumerir lirc
     restart vendor.ir-hal-1-0
 
+# Netmgrd
+on post-fs
+    mount none /vendor/etc/data/netmgr_config_override.xml /vendor/etc/data/netmgr_config.xml bind
+
 # Sensors
 service vendor-sensor-sh /vendor/bin/init.qcom.sensors.sh
     override
