@@ -4,6 +4,28 @@ service vendor.xiaomi_device_script /vendor/bin/init.xiaomi.device.sh
     group root
     oneshot
 
-# IR
-on boot
+on property:ro.vendor.xiaomi.series=ulysse
     chown system system /dev/lirc0
+    restart vendor.ir-hal-1-0
+
+# Netmgrd
+on post-fs
+    mount none /vendor/etc/data/netmgr_config_override.xml /vendor/etc/data/netmgr_config.xml bind
+
+# Sensors
+service vendor-sensor-sh /vendor/bin/init.qcom.sensors.sh
+    override
+    class core
+    user root
+    oneshot
+    disabled
+
+on property:ro.vendor.xiaomi.series=ulysse
+    mount none /vendor/etc/sensors/ulysse_sensor_def_qcomdev.conf /vendor/etc/sensors/sensor_def_qcomdev.conf bind
+    enable vendor-sensor-sh
+
+on property:ro.vendor.xiaomi.device=ugglite
+    setprop vendor.usb.rndis.func.name "rndis"
+
+on property:ro.vendor.xiaomi.device=ugg
+    setprop vendor.usb.rndis.func.name "rndis_bam"
