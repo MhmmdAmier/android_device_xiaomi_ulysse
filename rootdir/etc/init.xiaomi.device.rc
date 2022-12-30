@@ -1,0 +1,37 @@
+service vendor.xiaomi_device_script /vendor/bin/init.xiaomi.device.sh
+    class core
+    user root
+    group root
+    oneshot
+
+# Audio
+on property:ro.vendor.xiaomi.series=ulysse
+    setprop vendor.audio.mixer_xml.path /vendor/etc/ulysse_mixer_paths_mtp.xml
+
+# Camera
+service vendor.ulysse_qcamerasvr /system/vendor/bin/ulysse_mm-qcamera-daemon
+    disabled
+    class late_start
+    user camera
+    group camera system inet input graphics
+    writepid /dev/cpuset/system-background/tasks
+
+on property:init.svc.vendor.ulysse_qcamerasvr=running
+    exec /bin/sleep 1s
+    restart vendor.camera-provider-2-4
+
+on property:ro.vendor.xiaomi.series=ulysse
+    setprop ro.hardware.camera ulysse
+    stop qcamerasvr
+    enable vendor.ulysse_qcamerasvr
+
+# IR
+on property:ro.vendor.xiaomi.series=ulysse
+    chown system system /dev/lirc0
+    setprop ro.hardware.consumerir lirc
+    restart vendor.ir-hal-1-0
+
+# Sensors
+on property:ro.vendor.xiaomi.series=ulysse
+    mount none /vendor/etc/sensors/ulysse_sensor_def_qcomdev.conf /vendor/etc/sensors/sensor_def_qcomdev.conf bind
+    enable vendor.sensors.qti
