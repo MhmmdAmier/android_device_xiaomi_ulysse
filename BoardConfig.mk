@@ -28,6 +28,9 @@ DEVICE_MANIFEST_FILE += $(DEVICE_PATH)/manifest.xml
 TARGET_INIT_VENDOR_LIB := //$(DEVICE_PATH):init_xiaomi_ulysse
 TARGET_RECOVERY_DEVICE_MODULES := init_xiaomi_ulysse
 
+# Input
+TARGET_USES_HARDWARE_KEYS := true
+
 # Kernel
 TARGET_KERNEL_VERSION := 4.9
 TARGET_KERNEL_CLANG_PATH := $(shell pwd)/prebuilts/clang/host/linux-x86/proton-clang

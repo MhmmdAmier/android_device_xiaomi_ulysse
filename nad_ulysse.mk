@@ -15,9 +15,6 @@ $(call inherit-product, vendor/nusantara/config/common_full_phone.mk)
 # Inherit from ulysse device
 $(call inherit-product, device/xiaomi/ulysse/device.mk)
 
-# Overlays
-DEVICE_PACKAGE_OVERLAYS += $(LOCAL_PATH)/overlay-lineage
-
 # Device identifier. This must come after all inclusions
 PRODUCT_DEVICE := ulysse
 PRODUCT_NAME := nad_ulysse
