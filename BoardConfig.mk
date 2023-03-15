@@ -33,7 +33,7 @@ TARGET_USES_HARDWARE_KEYS := true
 
 # Kernel
 TARGET_KERNEL_VERSION := 4.9
-TARGET_KERNEL_CLANG_PATH := $(shell pwd)/prebuilts/clang/host/linux-x86/clang-r437112
+TARGET_KERNEL_CLANG_PATH := $(shell pwd)/prebuilts/clang/host/linux-x86/clang-r450784d
 TARGET_KERNEL_CLANG_COMPILE := true
 TARGET_KERNEL_CONFIG := ulysse_defconfig
 TARGET_KERNEL_SOURCE := kernel/xiaomi/ulysse
